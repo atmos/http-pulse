@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+require "rubygems"
+require "http-pulse"
+require "optparse"
+
+options = { :environment => :production }
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: http-pulse [options]"
+
+  opts.on("--environment [environment]", [:dev],
+          "What environment to run against") do |action|
+    options[:environment] = action.to_s
+  end
+
+  opts.on("--create [URL]", "The url to monitor") do |action|
+    options[:action] = :create
+    options[:url]    = action.to_s
+  end
+
+  opts.on("--delete [URL]", "The url to stop monitoring") do |action|
+    options[:action] = :delete
+    options[:url]    = action.to_s
+  end
+end.parse!
+
+begin
+  token = File.read(File.expand_path("~/.http-pulse"))
+  api = HttpPulse::Monitor.new(token.chomp, options[:environment])
+  case options[:action]
+  when :create
+    response = api.create(options[:url])
+    puts "Successfully added #{options[:url]}"
+  when :delete
+    raise ArgumentError, "Unimplemented on the server"
+  else
+    response = api.get
+    if response.any?
+      puts "Your Monitors"
+      puts "-" * 78
+      response.each do |monitor|
+        puts HttpPulse::Response::Monitor.new(monitor).to_s
+      end
+    else
+      puts "You have no monitors in place, create some!"
+    end
+  end
+rescue Errno::ECONNREFUSED => e
+  puts "http-pulse seems to be down ATM :("
+  exit(1)
+rescue RestClient::ResourceNotFound => e
+  puts "Your token is likely invalid. :("
+  puts "Please visit http://http-pulse.herok.com to verify"
+  exit(1)
+rescue => e
+  puts e.class.to_s
+  puts e.message
+  $stderr.puts "Please get your API token from http://http-pulse.heroku.com"
+  $stderr.puts "Once you have it, drop it in ~/.http-pulse"
+  exit(1)
+end
+
+# vim:ft=ruby
