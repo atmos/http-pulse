@@ -17,11 +17,24 @@ module HttpPulse
     end
 
     def delete(url)
-      response = RestClient.delete(endpoint, {:url => url}, {:content_type => :json, :accept => :json})
-      handle_response(response)
+      if object_id = id_for_url(url)
+        response = RestClient.delete("#{endpoint}/#{object_id}")
+        JSON.parse(response) == { }
+      else
+        false
+      end
     end
 
     private
+
+    def id_for_url(url)
+      monitors = get
+      monitors.each do |monitor|
+        return monitor['_id'] if monitor['url'] == url
+      end
+      nil
+    end
+
     def handle_response(response)
       raise RequestError, response.inspect unless (200...299).include?(response.code)
       JSON.parse(response.to_s)

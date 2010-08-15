@@ -33,7 +33,11 @@ begin
     response = api.create(options[:url])
     puts "Successfully added #{options[:url]}"
   when :delete
-    raise ArgumentError, "Unimplemented on the server"
+    if api.delete(options[:url])
+      puts "Successfully removed #{options[:url]}"
+    else
+      puts "Unable to locate #{options[:url]} for your user"
+    end
   else
     response = api.get
     if response.any?
@@ -46,7 +50,7 @@ begin
       puts "You have no monitors in place, create some!"
     end
   end
-rescue Errno::ECONNREFUSED => e
+rescue Errno::ECONNREFUSED, RestClient::RequestTimeout => e
   puts "http-pulse seems to be down ATM :("
   exit(1)
 rescue RestClient::ResourceNotFound => e
