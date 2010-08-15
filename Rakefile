@@ -6,7 +6,7 @@ require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
   s.name = "http-pulse"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.author = "Corey Donohoe"
   s.email = "atmos@atmos.org"
   s.homepage = "http://www.atmos.org/http-pulse"
