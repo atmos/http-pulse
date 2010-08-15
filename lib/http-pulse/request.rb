@@ -47,7 +47,7 @@ module HttpPulse
     def endpoint_host
       endpoints = {
         :dev        => 'http://localhost:9393',
-        :production => 'http://http-pulse.heroku.com'
+        :production => 'http://http-pulse.atmos.org'
       }
       endpoints[@environment.to_sym] || raise(ArgumentError, "Unknown Environment #{@environment}")
     end
