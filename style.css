@@ -1,0 +1,203 @@
+/* Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  font: 13.34px helvetica, arial, clean, sans-serif;
+  *font-size: large;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "terfens-1","terfens-2",sans-serif;
+  margin: 5px 10px;
+}
+
+h1 {
+  font-size: 3.0em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 1em 0;
+}
+
+a {
+  color: #000;
+}
+
+a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #999;
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+img {
+  display: block;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+
+.footer {
+  margin: 7px 15px;
+  text-align: center;
+}
+
+/*****************************************************************************/
+/*
+/* Site
+/*
+/*****************************************************************************/
+.site {
+  font-size: 110%;
+  text-align: justify;
+  width: 40em;
+  margin: 3em auto 2em auto;
+  line-height: 1.5em;
+}
+
+.title {
+  color: #a00;
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
+.title a {
+  font-size: 4.0em;
+  padding: 1px 4px;
+  text-decoration: none;
+}
+/*****************************************************************************/
+/*
+/* Posts
+/*
+/*****************************************************************************/
+#post {
+  width: 850px;
+  margin: 0 auto;
+}
+
+#post p {
+  font-size: 110%;
+  width: 575px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 6px;
+}
+
+#post .gist {
+  width: 600px;
+  padding: 4px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+/* standard */
+#post pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+#home h1 {
+  margin: 0;
+  padding: 5px;
+  font-size: 2.8em;
+  line-height: 1.3em;
+}
+#home h1 > a {
+  color: #000;
+  text-decoration: none;
+}
+#home h1.right_arrow {
+  background: url("images/arrow.jpg") no-repeat;
+  background-position: top right;
+  text-align: left;
+  height: 50px;
+  width: 667px;
+}
+#home h1.left_arrow {
+  background: url("images/arrow.jpg") no-repeat;
+  background-position: top left;
+  text-align: right;
+  height: 50px;
+  width: 665px;
+}
+#home h2 {
+  margin-top: 20px;
+  padding-left: 0;
+  margin-left: 0;
+  font-size: 2.4em;
+}
+#home p {
+  padding-left: 0;
+  margin-left: 20px;
+}
+
+#home ul, #post ul,
+#home ol, #post ol {
+  width: 500px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 2px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+#post code, #home code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  font-size: 95%;
+  padding: 0 .2em;
+}
+
+#post pre code, #home pre {
+  border: none;
+}
+
+#post pre.terminal, #home pre.terminal {
+  border: 1px solid black;
+  background-color: #333;
+  color: white;
+  width: 550px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+#post pre.terminal code {
+  background-color: #333;
+}
+
+#related {
+  margin-top: 2em;
+}
+
+#related h2 {
+  margin-bottom: 1em;
+}
+
+#post .slideshare {
+  margin: 0 auto;
+}

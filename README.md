@@ -1,3 +1,0 @@
-== http-pulse
-
-A gem that provides...
