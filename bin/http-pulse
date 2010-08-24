@@ -23,6 +23,11 @@ OptionParser.new do |opts|
     options[:action] = :delete
     options[:url]    = action.to_s
   end
+
+  opts.on("--register [TOKEN]", "The token you got at signup") do |token|
+    options[:action] = :register
+    options[:token]  = token.to_s
+  end
 end.parse!
 
 begin
@@ -38,6 +43,11 @@ begin
     else
       puts "Unable to locate #{options[:url]} for your user"
     end
+  when :register
+    File.open(File.expand_path("~/.http-pulse"), 'w') do |fp|
+      fp.puts(options[:token])
+    end
+    puts "Added your token, now try running 'http-pulse' to see your monitors"
   else
     response = api.get
     if response.any?
@@ -61,7 +71,7 @@ rescue => e
   puts e.class.to_s
   puts e.message
   $stderr.puts "Please get your API token from http://http-pulse.heroku.com"
-  $stderr.puts "Once you have it, drop it in ~/.http-pulse"
+  $stderr.puts "Once you have it, use http-pulse --register to add it"
   exit(1)
 end
 
